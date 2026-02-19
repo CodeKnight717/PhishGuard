@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useScanContext } from '../context/ScanContext';
 import { Search, Loader2 } from 'lucide-react';
 import Button from '../components/ui/Button';
 import StatusCard from '../components/features/StatusCard';
 import { motion } from 'framer-motion';
 
 const Scanner = () => {
+    const { addScan } = useScanContext();
     const [url, setUrl] = useState('');
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(null);
@@ -21,30 +23,75 @@ const Scanner = () => {
             setLoading(false);
 
             // Mock Logic for Demo
+            // Enhanced Mock Analysis Logic
             let mockResult = {
                 url,
                 status: 'safe',
-                confidence: 0.98,
-                details: 'No threats detected in our database or heuristic analysis.'
+                confidence: 0.95,
+                details: 'This website appears to be safe. valid SSL certificate and no blacklisting records found.'
             };
 
-            if (url.includes('suspicious') || url.includes('ip')) {
+            const lowerUrl = url.toLowerCase();
+            const suspiciousKeywords = ['login', 'signin', 'verify', 'account', 'update', 'secure', 'bank', 'confirm', 'wallet', 'crypto'];
+            const safeDomains = ['google.com', 'facebook.com', 'twitter.com', 'github.com', 'stackoverflow.com', 'amazon.com', 'microsoft.com', 'apple.com', 'linkedin.com', 'youtube.com'];
+
+            // 1. Check for IP address usage (often suspicious if not a local dev environment)
+            const isIpAddress = /^http?:\/\/(\d{1,3}\.){3}\d{1,3}/.test(lowerUrl);
+
+            // 2. Check for HTTP (not HTTPS)
+            const isHttp = lowerUrl.startsWith('http://');
+
+            // 3. Extract domain to check against safelist
+            let domain = '';
+            try {
+                const urlObj = new URL(url.startsWith('http') ? url : `https://${url}`);
+                domain = urlObj.hostname;
+            } catch (e) {
+                // If invalid URL, might be just a domain string
+                domain = lowerUrl.split('/')[0];
+            }
+
+            const isSafeDomain = safeDomains.some(safe => domain.endsWith(safe));
+
+            if (isSafeDomain) {
+                mockResult = {
+                    url,
+                    status: 'safe',
+                    confidence: 0.99,
+                    details: 'Verified safe domain. SSL certificate is valid and issued by a trusted authority.'
+                };
+            } else if (isIpAddress) {
                 mockResult = {
                     url,
                     status: 'suspicious',
-                    confidence: 0.75,
-                    details: 'This site uses an IP address instead of a domain name, which is often a sign of phishing.'
+                    confidence: 0.85,
+                    details: 'This site is hosted on a raw IP address, which is a common characteristic of phishing sites avoiding domain registration.'
                 };
-            } else if (url.includes('phish') || url.includes('malware') || url.includes('google-login')) {
+            } else if (suspiciousKeywords.some(keyword => lowerUrl.includes(keyword))) {
                 mockResult = {
                     url,
                     status: 'malicious',
-                    confidence: 0.99,
-                    details: 'This site appears to be impersonating "google.com" and has been flagged by 3 security engines.'
+                    confidence: 0.92,
+                    details: 'Detected sensitive keywords (like login/verify) in a non-verified domain. High probability of credential harvesting.'
+                };
+            } else if (isHttp) {
+                mockResult = {
+                    url,
+                    status: 'suspicious',
+                    confidence: 0.70,
+                    details: 'Connection is not secure (HTTP). Sensitive information entered here could be intercepted.'
+                };
+            } else if (domain.endsWith('.xyz') || domain.endsWith('.top') || domain.endsWith('.gq') || domain.endsWith('.tk')) {
+                mockResult = {
+                    url,
+                    status: 'suspicious',
+                    confidence: 0.65,
+                    details: 'The Top-Level Domain (TLD) is frequently associated with spam and low-reputation sites.'
                 };
             }
 
             setResult(mockResult);
+            addScan(mockResult);
         }, 1500);
     };
 

@@ -74,23 +74,7 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Stats Section */}
-            <section className="container mx-auto px-4 py-20 border-y border-slate-800 bg-slate-900/50">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-                    <div>
-                        <div className="text-4xl font-bold text-white mb-2">1M+</div>
-                        <div className="text-slate-400">URLs Scanned</div>
-                    </div>
-                    <div>
-                        <div className="text-4xl font-bold text-white mb-2">99.9%</div>
-                        <div className="text-slate-400">Detection Rate</div>
-                    </div>
-                    <div>
-                        <div className="text-4xl font-bold text-white mb-2">0.05s</div>
-                        <div className="text-slate-400">Average Latency</div>
-                    </div>
-                </div>
-            </section>
+
         </div>
     );
 };

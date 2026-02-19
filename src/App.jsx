@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import Scanner from './pages/Scanner';
@@ -8,7 +8,7 @@ import Report from './pages/Report';
 function App() {
     return (
         /* The basename must match your GitHub repository name exactly */
-        <Router basename={import.meta.env.BASE_URL}>
+        <Router>
             <Layout>
                 <Routes>
                     <Route path="/" element={<Home />} />

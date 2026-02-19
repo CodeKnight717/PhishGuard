@@ -8,7 +8,7 @@ import Report from './pages/Report';
 function App() {
     return (
         /* The basename must match your GitHub repository name exactly */
-        <Router basename="/PhishGuard">
+        <Router basename={import.meta.env.BASE_URL}>
             <Layout>
                 <Routes>
                     <Route path="/" element={<Home />} />

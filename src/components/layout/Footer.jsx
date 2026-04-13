@@ -12,7 +12,7 @@ const Footer = () => {
                             <span className="text-xl font-bold text-white">Dev Shield</span>
                         </div>
                         <p className="text-slate-400 text-sm">
-                            Protecting your browsing experience with advanced AI-powered phishing detection.
+                            Protecting your browsing experience with advanced phishing detection.
                         </p>
                     </div>
 

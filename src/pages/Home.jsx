@@ -34,7 +34,7 @@ const Home = () => {
                             <span>Now available for Chrome & Firefox</span>
                         </div>
                         <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-                            Secure Your Browsing <br /> with AI Precision
+                            Secure Your Browsing <br /> with Precision
                         </h1>
                         <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
                             Dev Shield analyzes websites in real-time to protect you from phishing attempts, malware, and suspicious domains.
@@ -59,7 +59,7 @@ const Home = () => {
                     <FeatureCard
                         icon={Zap}
                         title="Real-time Analysis"
-                        description="Our AI engine scans URLs instantly as you browse, identifying threats before they can harm you."
+                        description="Our engine scans URLs instantly as you browse, identifying threats before they can harm you."
                     />
                     <FeatureCard
                         icon={Globe}

@@ -34,6 +34,7 @@ const Scanner = () => {
             const lowerUrl = url.toLowerCase();
             const suspiciousKeywords = ['login', 'signin', 'verify', 'account', 'update', 'secure', 'bank', 'confirm', 'wallet', 'crypto'];
             const safeDomains = ['google.com', 'facebook.com', 'twitter.com', 'github.com', 'stackoverflow.com', 'amazon.com', 'microsoft.com', 'apple.com', 'linkedin.com', 'youtube.com'];
+            const maliciousDomains = ['olamovies.cyou', 'fl1pkart.com', 'moviesverse.com'];
 
             // 1. Check for IP address usage (often suspicious if not a local dev environment)
             const isIpAddress = /^http?:\/\/(\d{1,3}\.){3}\d{1,3}/.test(lowerUrl);
@@ -52,8 +53,16 @@ const Scanner = () => {
             }
 
             const isSafeDomain = safeDomains.some(safe => domain.endsWith(safe));
+            const isMaliciousDomain = maliciousDomains.some(mal => domain.endsWith(mal));
 
-            if (isSafeDomain) {
+            if (isMaliciousDomain) {
+                mockResult = {
+                    url,
+                    status: 'malicious',
+                    confidence: 0.99,
+                    details: 'This domain has been flagged as a known malicious website.'
+                };
+            } else if (isSafeDomain) {
                 mockResult = {
                     url,
                     status: 'safe',

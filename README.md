@@ -1,6 +1,6 @@
-# Dev Shield - Real-time Phishing Detection
+# CyberShield - Real-time Phishing Detection
 
-Dev Shield is a comprehensive security tool designed to protect users from phishing threats in real-time. It leverages heuristic analysis, threat intelligence databases, and an intuitive dashboard to provide actionable insights and alerts on potentially malicious websites.
+CyberShield is a comprehensive security tool designed to protect users from phishing threats in real-time. It leverages heuristic analysis, threat intelligence databases, and an intuitive dashboard to provide actionable insights and alerts on potentially malicious websites.
 
 ## 🚀 Features
 

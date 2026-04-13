@@ -13,7 +13,7 @@ const Dashboard = () => {
                 className="mb-8"
             >
                 <h1 className="text-3xl font-bold text-white mb-2">Dashboard</h1>
-                <p className="text-slate-400">Overview of your Dev Shield security campaigns and statistics.</p>
+                <p className="text-slate-400">Overview of your CyberShield security campaigns and statistics.</p>
             </motion.div>
 
             {/* Stats Grid */}

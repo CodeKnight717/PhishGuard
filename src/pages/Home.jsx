@@ -37,7 +37,7 @@ const Home = () => {
                             Secure Your Browsing <br /> with AI Precision
                         </h1>
                         <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-                            PhishGuard analyzes websites in real-time to protect you from phishing attempts, malware, and suspicious domains.
+                            Dev Shield analyzes websites in real-time to protect you from phishing attempts, malware, and suspicious domains.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link to="/scanner">

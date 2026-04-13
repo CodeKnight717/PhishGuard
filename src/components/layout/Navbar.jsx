@@ -23,7 +23,7 @@ const Navbar = () => {
                 <Link to="/" className="flex items-center gap-2">
                     <Shield className="w-8 h-8 text-emerald-500" />
                     <span className="text-xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
-                        PhishGuard
+                        Dev Shield
                     </span>
                 </Link>
 
